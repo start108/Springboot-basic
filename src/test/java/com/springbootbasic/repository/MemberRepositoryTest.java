@@ -15,7 +15,7 @@ class MemberRepositoryTest {
 	// 테스트 순서는 보장되지 않으므로 메소드가 실행될 때 객체를 clear 되도록 afterEach() 메소드를 실행
 	@AfterEach
 	public void afterEach() {
-		rp.clearStore(); 
+		rp.clearStore(); // asdasd
 	}
 	
 	@Test
