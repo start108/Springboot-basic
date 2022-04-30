@@ -5,12 +5,15 @@ import java.util.Optional;
 
 import com.springbootbasic.domain.Member;
 import com.springbootbasic.repository.MemberRepository;
-import com.springbootbasic.repository.MemoryMemberRepository;
 
 public class MemberService {
 
-	private final MemberRepository repository = new MemoryMemberRepository();
+	private final MemberRepository repository;
 	
+	public MemberService(MemberRepository repository) {
+		this.repository = repository;
+	}
+
 	/*
 	 * 회원가입
 	 * */
