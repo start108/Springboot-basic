@@ -1,8 +1,14 @@
 package com.springbootbasic.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import com.springbootbasic.domain.Member;
 import com.springbootbasic.service.MemberService;
 
 @Controller
@@ -28,7 +34,34 @@ public class MemberController {
 	 * 의존관계가 실행 중에 동적으로 변하는 경우는 거의 없으므로 생성자 주입을 권장
 	 * */
 	@Autowired
-	public MemberController(MemberService memberService) {
+	public MemberController( MemberService memberService ) {
 		this.memberService = memberService;
+	}
+	
+	@GetMapping("/members/new")
+	public String createForm() {
+		return "members/createMemberForm";
+	}
+	
+	@PostMapping("/members/new")
+	public String create( MemberForm form ) {
+		
+		Member member = new Member();
+		
+		member.setName( form.getName() );
+		
+		memberService.join( member );
+		
+		return "redirect:/";
+	}
+	
+	@GetMapping("/members")
+	public String list( Model model ) {
+		
+		List<Member> members = memberService.findMembers();
+		
+		model.addAttribute("members", members);
+		
+		return "members/memberList";
 	}
 }
