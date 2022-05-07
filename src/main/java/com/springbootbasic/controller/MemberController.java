@@ -38,11 +38,17 @@ public class MemberController {
 		this.memberService = memberService;
 	}
 	
+	/*
+	 * 회원 등록화면 조회
+	 * */
 	@GetMapping("/members/new")
 	public String createForm() {
 		return "members/createMemberForm";
 	}
 	
+	/*
+	 * 회원 등록
+	 * */
 	@PostMapping("/members/new")
 	public String create( MemberForm form ) {
 		
@@ -55,6 +61,9 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
+	/*
+	 * 회원 목록 조회
+	 * */
 	@GetMapping("/members")
 	public String list( Model model ) {
 		
