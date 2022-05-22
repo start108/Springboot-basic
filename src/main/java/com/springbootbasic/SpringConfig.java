@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.springbootbasic.aop.TimeTraceAop;
 import com.springbootbasic.repository.JdbcTemplateMemberRepository;
 import com.springbootbasic.repository.JpaMemberRepository;
 import com.springbootbasic.repository.MemberRepository;
@@ -22,25 +23,43 @@ public class SpringConfig {
 //		this.dataSource = dataSource;
 //	}
 	
-	private EntityManager em;
+//	private EntityManager em;
+//	
+//	@Autowired
+//	public SpringConfig( EntityManager em ) {
+//		this.em = em;
+//	}
 	
+	private final MemberRepository mr;
+
 	@Autowired
-	public SpringConfig( EntityManager em ) {
-		this.em = em;
+	public SpringConfig(MemberRepository mr) {
+		this.mr = mr;
 	}
 
 	/*
 	 * 직접 스프링 빈 등록
 	 * */
-	@Bean
-	public MemberService memberService() {
-		return new MemberService( memberRepository() );
-	}
+//	@Bean
+//	public MemberService memberService() {
+//		return new MemberService( memberRepository() );
+//	}
 	
 	@Bean
-	public MemberRepository memberRepository() {
+	public MemberService memberService() {
+		return new MemberService( mr );
+	}
+	
+//	@Bean
+//	public TimeTraceAop timeTraceAop () {
+//		return new TimeTraceAop();
+//	}
+	
+//	@Bean
+//	public MemberRepository memberRepository() {
 		//return new MemoryMemberRepository();
 		//return new JdbcTemplateMemberRepository( dataSource );
-		return new JpaMemberRepository( em );
-	}
+		//return new JpaMemberRepository( em );
+		
+//	}
 }
