@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.springbootbasic.domain.Member;
@@ -18,11 +19,12 @@ public class MemberServiceIntegrationTest {
 	@Autowired MemberService service;
 	
 	@Test
+	//@Commit
 	void 회원가입() {
 	
 		// given
 		Member m = new Member();
-		m.setName("spring");
+		m.setName("spring100");
 		
 		// when
 		Long saveId = service.join( m );

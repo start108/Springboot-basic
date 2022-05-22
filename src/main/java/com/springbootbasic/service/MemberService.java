@@ -3,12 +3,12 @@ package com.springbootbasic.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.springbootbasic.domain.Member;
 import com.springbootbasic.repository.MemberRepository;
 
+@Transactional
 public class MemberService {
 
 	private final MemberRepository repository;
